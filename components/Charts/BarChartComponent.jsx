@@ -21,7 +21,7 @@ ChartJS.register(
   Legend
 );
 
-export default function BarChartComponent({ ChartData }) {
+export default function BarChartComponent({ ChartData, colors, label }) {
 
   const options = {
 
@@ -53,7 +53,7 @@ export default function BarChartComponent({ ChartData }) {
       tooltip: {
         callbacks: {
           label: function (data) {
-            return "Custom Label Text:" + data.formattedValue;
+            return label+ ": " + data.formattedValue;
           },
         },
       },
@@ -72,27 +72,28 @@ export default function BarChartComponent({ ChartData }) {
     },
   };
   // The following colors will be used sequentially for the chart bars
-  const backgroundColors = [
-    "#000000", "#002B49", "#0067A0"
-  ];
+  // const backgroundColors = [
+  //   // "#000000", "#002B49", "#0067A0"
+  // ];
+  const backgroundColors = colors;
 
   const borderColors = [
-      'rgb(255, 0, 0)',
-      'rgb(255, 0, 0)',
-      'rgb(255, 0, 0)',
+      // 'rgb(255, 0, 0)',
+      // 'rgb(255, 0, 0)',
+      // 'rgb(255, 0, 0)',
     ]
 
 
   const data = {
-    labels: ChartData.map((item) => item.companyName),
+    labels: ChartData.map((item) => item.xaxis),
     datasets: [
       {
-        label: ChartData.map((item) => item.progressPaymentPrice),
-        data: ChartData.map((item) => item.progressPaymentPrice),
+        label: ChartData.map((item) => item.yaxis),
+        data: ChartData.map((item) => item.yaxis),
         backgroundColor: backgroundColors,
         borderColor: borderColors,
         borderWidth: 1,
-        borderRadius: "10",
+        borderRadius: "5",
         // maxBarThickness: "10",
 
       },

@@ -32,23 +32,30 @@ ChartJS.register(
 
 
 
-export default function LineChartComponent({ChartData1, ChartData2}) {
+export default function LineChartComponent({
+  ChartData1, 
+  ChartData2, 
+  Labels,
+  Colors,
+}) {
 
   const data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    // labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    labels: ChartData1.map((item) => item.xaxis),
     datasets: [
       {
-        label: "First dataset",
-        data: ChartData1.map((item) => item.progressPaymentPrice),
-        fill: true,
-        backgroundColor: "rgba(75,192,192,0.2)",
-        borderColor: "rgba(75,192,192,1)"
+        label: Labels.firstDataSet,
+        data: ChartData1.map((item) => item.yaxis),
+        fill: false,
+        backgroundColor: Colors[0],
+        borderColor: Colors[0]
       },
       {
-        label: "Second dataset",
-        data: ChartData2.map((item) => item.progressPaymentPrice),
+        label: Labels.secondDataSet,
+        data: ChartData2.map((item) => item.yaxis),
         fill: false,
-        borderColor: "#742774"
+        backgroundColor: Colors[1],
+        borderColor: Colors[1]
       }
     ]
   };

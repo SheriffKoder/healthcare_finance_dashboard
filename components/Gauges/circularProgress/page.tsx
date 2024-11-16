@@ -11,7 +11,7 @@ import "./circularProgress.css"
 
 // if you will use a small circle use in svg r value and in the fill add value (i100%End-iDesired100%End)
 
-const CircularProgress = ({progress}:{progress:number}) => {
+const CircularProgress = ({progress, Colors}:{progress:number, Colors:string[]}) => {
 
     const [prog, setProg] = useState<string>("100%");
     const [length, setLength] = useState<number>(95);
@@ -38,9 +38,9 @@ const CircularProgress = ({progress}:{progress:number}) => {
 
         // let fill = (Math.floor(450-(450*(num/100))+factor))+(282-106); // small svg r
         // console.log(fill);
-        console.log(length);
-        console.log(+prog.split("%")[0]);
-        console.log(fill);
+        // console.log(length);
+        // console.log(+prog.split("%")[0]);
+        // console.log(fill);
         // ref.current?.
         let progressBar = document.getElementById("circularProgress_svg");
 
@@ -135,8 +135,8 @@ const CircularProgress = ({progress}:{progress:number}) => {
             xmlns="http://www.w3.org/2000/svg" version="1.1" width="148px" height="148px">
                 <defs>
                     <linearGradient id="GradientColor">
-                        <stop offset="50%" stopColor="#39d0b7"/>
-                        <stop offset="100%" stopColor="#9733EE"/>
+                        <stop offset="50%" stopColor={Colors[0]}/>
+                        <stop offset="100%" stopColor={Colors[1]}/>
                     </linearGradient>
                 </defs>
                 <circle cx="72.5" cy="73.5" r="70" strokeLinecap="round"
