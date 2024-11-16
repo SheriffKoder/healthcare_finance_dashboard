@@ -2,3 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.default_card {
+    @apply border rounded-md border-white
+}
+
+
+.layout_gap {
+    @apply gap-[5rem]
+}
+
+.inline_gap {
+    @apply gap-[1.5rem]
+}
