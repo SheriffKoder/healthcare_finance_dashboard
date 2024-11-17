@@ -1,12 +1,129 @@
 import React from 'react'
-import BarChartComponent from '../Charts/BarChartComponent'
 
-import {colors} from "@/constants";
-import { Pie1_CharData, PieColors } from '@/constants';
+import { PieColors } from '@/constants';
 import PieChartComponent from '../Charts/PieChartComponent';
 
 
-const Pie_1 = () => {
+import { optionType } from '@/app/page';
+import { facilitiesType, myCompany, patientType, servicesType } from '@/constants';
+import { getAllPatients } from '@/Helpers/functions';
+
+
+type pieCharDataType = {
+  xaxis: string,
+  yaxis: number,
+}
+
+const Pie_1= ({dashboardOption}:{dashboardOption:optionType}) => {
+
+// How much each service got paid
+  let Pie1_CharData:pieCharDataType[] = []
+  let allServicesPay = 0;
+
+  // go through each service in this facility,
+  
+  if (dashboardOption.type === "facility") {
+
+    let thisFacility = {} as facilitiesType;
+
+    // find in my company this facility object.
+    myCompany.forEach((facility)=> {
+      if (facility.name === dashboardOption.key) {
+        thisFacility=facility;
+      }
+    })
+
+
+    // sum of all payments from the patients in each service in this facility
+    // once done with a service, store its paid with its name in an object
+    thisFacility.services.map((service:servicesType, index:number)=> {
+
+      let serviceTotalPaid = 0;
+
+      service.patients.map((patient:patientType)=> {
+        serviceTotalPaid = serviceTotalPaid + patient.paid;
+      })
+
+      Pie1_CharData[index] = {xaxis: service.LOC, yaxis: serviceTotalPaid};
+
+    })
+
+  
+  }
+ 
+  // how much each service got paid from this payer
+  if (dashboardOption.type === "payer") {
+
+    // go though each service in all facilities
+    // in each service go into it patients
+    // if this patient has this payer, add to sum
+    let i = 0;
+
+    myCompany.forEach((facility)=> {
+
+      // once done with a service, store its paid with its name in an object
+      facility.services.map((service:servicesType, index:number)=> {
+      // console.log(service.LOC);
+
+        let serviceTotalPaid = 0;
+
+
+        service.patients.map((patient:patientType)=> {
+          // console.log(patient.memberId);
+          if (patient.payer === dashboardOption.key) {
+            serviceTotalPaid = serviceTotalPaid + patient.paid;
+
+          }
+        })
+        Pie1_CharData[i] = {xaxis: service.LOC, yaxis: serviceTotalPaid};
+        i++;
+
+      })
+
+    })
+  }
+
+  if (dashboardOption.type === "year") {
+
+    // go though each service in all facilities
+    // in each service go into it patients
+    // if this patient paid in this date, add to sum
+    let i = 0;
+
+    myCompany.forEach((facility)=> {
+
+    // once done with a service, store its paid with its name in an object
+    facility.services.map((service:servicesType, index:number)=> {
+      // console.log(service.LOC);
+
+      let serviceTotalPaid = 0;
+
+
+      service.patients.map((patient:patientType)=> {
+        // console.log(patient.memberId);
+        if (+patient.DOS.toISOString().slice(0,4) === +dashboardOption.key) {
+          serviceTotalPaid = serviceTotalPaid + patient.paid;
+
+        }
+      })
+      Pie1_CharData[i] = {xaxis: service.LOC, yaxis: serviceTotalPaid};
+      i++;
+
+    })
+
+  })
+
+  }
+
+
+  Pie1_CharData.forEach((item)=>(
+    allServicesPay = allServicesPay + item.yaxis
+  ));
+
+
+
+
+
   return (
     <div className="w-full h-full flex items-center justify-center">
 
@@ -20,6 +137,7 @@ const Pie_1 = () => {
               style={{background:PieColors[index]}}></span>
             </div>
           )}
+          Total:{allServicesPay} 
           </div>
           
           <PieChartComponent 

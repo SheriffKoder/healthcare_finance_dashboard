@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-import { Facilities } from '@/constants'
+import { Facilities, myCompany } from '@/constants'
 
 // We want to display specific KPI's for each facility
 // How much billed in total
@@ -11,7 +11,27 @@ import { Facilities } from '@/constants'
 // It's OOPM
 
 
+
+
+
 const Table_1 = () => {
+
+// for each facility
+// name --
+// -how many services --
+// OOPM achieved
+// number of patients --
+// total billed --
+// total paid --
+// payment percentage
+
+
+
+
+
+
+
+
   return (
 
     <div className="w-full h-full flex items-center justify-center">
@@ -30,31 +50,36 @@ const Table_1 = () => {
             </thead>
 
             <tbody>
-                {Facilities.map((facility)=> {
+                {myCompany.map((facility, index)=> {
 
                     let total_billed = 0;
-                    facility.patients.forEach((patient)=> (
-                        total_billed = total_billed + patient.billed
-                    ))
-
                     let total_paid = 0;
-                    facility.patients.forEach((patient)=> (
-                        total_paid = total_paid + patient.paid
-                    ))
-                    
-                    const percentage = (total_paid/total_billed)*100;
+                    // let servicesCount = 0;
+                    let patientsCount = 0;
+                    let percentage = 0;
+                    let OOPM_achieved = 0;
+                        facility.services.forEach((service)=>{
+                            // servicesCount = servicesCount + 1;
+                            service.patients.forEach((patient)=> {
+                                total_billed = total_billed + patient.billed
+                                total_paid = total_paid + patient.paid;
+                                patientsCount = patientsCount + 1;
+                                percentage = (total_paid/total_billed)*100;
+                                if (patient.paid > service.OOPM) OOPM_achieved = OOPM_achieved +1;
 
-                    const patients_count = facility.patients.length;
+                            })
+                })
+                    
 
 
                     return (
-                    <tr className=''>
+                    <tr className='' key={index}>
                         <td>{facility.name}</td>
                         <td>{total_billed}</td>
                         <td>{total_paid}</td>
                         <td>{percentage}%</td>
-                        <td>{patients_count}</td>
-                        <td>{facility.OOEM}</td>
+                        <td>{patientsCount}</td>
+                        <td>{OOPM_achieved}</td>
 
                     </tr>
                     )

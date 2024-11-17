@@ -110,7 +110,7 @@ const CircularProgress = ({progress, Colors}:{progress:number, Colors:string[]})
 
     useEffect(()=> {
         changeProgress(progress);
-    },[]);
+    },[progress]);
 
   return (
     <section className="FullScreen_CenteredFlex ambientBackground">
