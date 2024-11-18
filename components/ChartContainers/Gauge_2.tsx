@@ -21,12 +21,11 @@ const Gauge_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
 
 
-
+  // get the total amount paid in the selected facility
   if (dashboardOption.type === "facility") {
 
 
 
-    // we want to get the total number of patients who paid their dues
     let thisFacility = {} as facilitiesType;
 
     // find in my company this facility object.
@@ -54,7 +53,8 @@ const Gauge_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
 
   }
- 
+
+  // get the total amount payed by patients having the selected payer in their object
   if (dashboardOption.type === "payer") {
 
     // 
@@ -80,6 +80,7 @@ const Gauge_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
   }
 
+  // get the total amount paid in the selected year
   if (dashboardOption.type === "year") {
     // get all patients
     const allPatients = getAllPatients(myCompany);
@@ -110,7 +111,8 @@ const Gauge_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
           <h4 className="text_main">Payment conversion</h4>
           <p className="text_sub">Total paid / billed</p>
-          <p className="num_lg">${total_paid} / ${total_billed}</p>
+          {/* // put a thousands comma */}
+          <p className="num_lg">${total_paid.toString().split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")} / ${total_billed.toString().split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
 
         </div>
 

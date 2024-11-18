@@ -25,7 +25,7 @@ const Gauge_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
 
 
-
+  // get the total number of patients who paid their dues in the selected facility
   if (dashboardOption.type === "facility") {
 
 
@@ -58,7 +58,8 @@ const Gauge_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
 
   }
- 
+
+  // get the total number of patients who paid their dues having the selected payer in their object
   if (dashboardOption.type === "payer") {
 
     // 
@@ -84,6 +85,7 @@ const Gauge_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
   }
 
+  // get the total number of patients who paid their dues in the selected year
   if (dashboardOption.type === "year") {
     // get all patients
     const allPatients = getAllPatients(myCompany);
@@ -126,7 +128,7 @@ const Gauge_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
         <div className='flex items-center justify-center flex-1'>
           <CircularProgress progress={successRate}
-          Colors={[colors.accent1, colors.accent1]}/>
+          Colors={[colors.accent1, colors.accent2]}/>
         </div>
 
 

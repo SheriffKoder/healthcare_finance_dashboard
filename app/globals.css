@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+/* used for testing responsive design on the layout - to display all components' areas */
 .default_card {
     @apply border rounded-md border-white
 }
@@ -18,22 +19,12 @@
 
 
 
-.main_bg_shade {
+/* ////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////// */
+/* Texts */
 
-}
-
-
-/* section header */
-/* card header */
-/* small/table number text */
-
-/* button selected */
-/* button not selected */
-
-/* selected card bg */
-/* transparent card */
-
-
+/* semi gradient texts, used for section headers */
 h1 {
     background: -webkit-linear-gradient(100deg, rgba(0,0,0,0.01) 0%, rgba(255,255,255,1) 30%);
     -webkit-background-clip: text;
@@ -43,13 +34,12 @@ h1 {
 }
 
 h2 {
-    background: -webkit-linear-gradient(100deg, rgba(0,0,0,0.01) 0%, rgba(255,255,255,1) 45%);
+    background: -webkit-linear-gradient(100deg, rgba(0,0,0,0.1) 0%, rgba(255,255,255,1) 47%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 1px 4px 12px rgba(0,0,0,0.05);
+    text-shadow: 1px 4px 12px rgba(255,255,255,0.05);
 
 }
-
 
 /* large number text */
 .num_lg {
@@ -58,30 +48,33 @@ h2 {
     font-size: 1.5em;
 }
 
-/* card sub text */
+/* card sub / light color text */
 .text_sub {
     opacity: 0.6;
     font-weight: 300;
     font-size: 1em;
 }
 
+/* card sub / light color text -- smaller size */
 .text_sub2 {
     opacity: 0.6;
     font-weight: 300;
     font-size: 0.75em;
 }
 
+/* main card text */
 .text_main {
     opacity: 1;
     font-weight: 700;
     font-size: 1em;
 }
 
+/* main card text -- larger */
 .text_main_lg {
     @apply font-bold text-[1.25rem] md1:text-[1.5em]
 }
 
-/* glass card */
+/* glass background */
 .glass_card {
     background: rgba(255, 255, 255, 0.05);
     /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
@@ -90,6 +83,16 @@ h2 {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+
+
+
+/* ////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////// */
+/* Color gradient backgrounds */
+
+/* 1. glass background - colored - hover only - 
+for scorecard's inner divs, borders adjusted to match the colors */
 .glass_card_hover:hover {
     background: rgba(42, 189, 142, 0.439);
     background: linear-gradient(306deg, rgba(56, 255, 192, 0.616) 0%, rgba(36, 160, 121, 0.439) 100%);
@@ -99,6 +102,17 @@ h2 {
 
 }
 
+/* 2. glass background - for the scroecard itself - same as above but active without hover */
+.glass_card_hoverx {
+    background: rgba(42, 189, 142, 0.439);
+    background: linear-gradient(306deg, rgba(56, 255, 192, 0.616) 0%, rgba(36, 160, 121, 0.439) 100%);
+    border: 1px solid rgba(42, 189, 142, 0.439);
+    border-top-color: rgba(17, 73, 55, 0.439);
+    border-left-color: rgba(17, 73, 55, 0.439);
+
+}
+
+/* 3. Used for buttons - same as above, without blur or borders */
 .glass_card_hover_on {
     background: rgba(42, 189, 142, 0.439);
     background: linear-gradient(306deg, rgba(56, 255, 192, 0.616) 0%, rgba(36, 160, 121, 0.439) 100%);
@@ -109,6 +123,7 @@ h2 {
 
 }
 
+/* 4. Used for buttons - same as above, without blur or borders */
 .glass_card_hover_on2 {
     background: rgba(42, 189, 142, 0.439);
     background: linear-gradient(306deg, rgba(30, 114, 99, 0.7) 0%, rgba(39, 170, 135, 0.7) 100%);
@@ -121,7 +136,7 @@ h2 {
 
 }
 
-
+/* 5. Used for the line chart container - no color, only blur, lower opacity */
 .glass_card2 {
     background: rgba(255, 255, 255, 0.01);
     /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
@@ -130,16 +145,15 @@ h2 {
     border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
+/* 5. more opacity on hover */
 .glass_card2:hover {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
 
 }
     
-
-
-
-/* https://csshero.org/mesher/ */
+/* the main application's background */
+/* source: https://csshero.org/mesher/ */
 .main_bg {
     background-color:rgb(3, 15, 14);
     background-image:
@@ -152,7 +166,13 @@ h2 {
     radial-gradient(at 8% 14%, hsla(240, 54%, 28%, 0.61) 0px, transparent 50%);
 }
 
+/* an absolute div makes the background darker! */
+.main_bg_shade {
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: -1;
+}
 
+/* color transition animation */
 .trans_anim {
     transition: all;
     transition-duration: 0.1s;
@@ -162,16 +182,20 @@ h2 {
 
 
 
+/* ////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////// */
+/* Table */
+
+/* no opacity text - responsive as we have many columns */
 .text_table {
     @apply text-[2.5vw] md:text-[1em] font-normal
 }
 
+/* opacity text - responsive as we have many columns*/
 .text_table_sub {
     @apply text-[3vw] md:text-[1em] font-light opacity-[0.6]
-
 }
-
-
 
 
 /* row height */
@@ -188,6 +212,29 @@ h2 {
 
 }
 
+/* table background and border */
+#table_1_container {
+    /* fallback for old browsers */
+    /* background: #667eea; */
+  
+    /* Chrome 10-25, Safari 5.1-6 */
+    /* background: -webkit-linear-gradient(to top, rgba(102,126,234,0.5), rgba(118,75,162,0.5)); */
+  
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* background: linear-gradient(to top, rgba(102,126,234,0.5), rgba(118,75,162,0.5)) */
+
+    background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.2));
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    /* border color opacity 0.05 for light bg, 0.075 for dark bg */
+    border: 1px solid rgba(255, 255, 255, 0.075);
+    border-bottom: none;
+
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////// */
+/* to hover over rows and change the hovered row's background and text color */
 
 table {
     border-collapse: separate;
@@ -240,6 +287,9 @@ table {
     border-right: 0px;
   }
 
+  /* ////////////////////////////////////////////////////////////////////////////////// */
+  /* OOPM value color styling */
+
   .highlight {
     /* width: 30px; */
     border-radius: 10px;
@@ -250,42 +300,28 @@ table {
     margin: 0 auto;
   }
 
-
   .highlight_yellow {
     border: 1px solid rgba(255, 230, 0, 0.15);
     background-color: rgba(255, 230, 0, 0.1);
+    color: rgba(255, 230, 0, 0.7);
   }
 
   .highlight_green {
     border: 1px solid rgba(56, 252, 226, 0.1);
     background-color: rgba(56, 252, 226, 0.075);
+    color: rgba(56, 252, 226, 0.6);
   }
 
   .highlight_blue {
     border: 1px solid rgba(56, 76, 252, 0.2);
     background-color: rgba(56, 76, 252, 0.15);
+    color: rgb(58, 120, 255);
   }
 
   .highlight_red {
     border: 1px solid rgba(255, 0, 43, 0.185);
     background-color: rgba(255, 0, 43, 0.1);
+    color: rgba(255, 0, 43, 0.7);
   }
 
-#table_1_container {
-        /* fallback for old browsers */
-        /* background: #667eea; */
-      
-        /* Chrome 10-25, Safari 5.1-6 */
-        /* background: -webkit-linear-gradient(to top, rgba(102,126,234,0.5), rgba(118,75,162,0.5)); */
-      
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        /* background: linear-gradient(to top, rgba(102,126,234,0.5), rgba(118,75,162,0.5)) */
 
-        background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.2));
-        /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-bottom: none;
-
-    }

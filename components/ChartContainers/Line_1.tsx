@@ -19,20 +19,17 @@ type PieDataType2 = {
 
 const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
+  // Trends for charges and payments over time
+  // billed over time (line1) vs paid over time (line2)
   // in the format of an array containing {xaxis: "year", yaxis: amount}
-  // billed over time 
-  // paid over time
 
   const total_billed:PieDataType2[] = [];
   const total_paid:PieDataType2[] = [];
 
-  // for the selected facility
-  // for the selected date ? ok upto this year
-  // for the selected payer
 
   // for this selected facility,
   // go through all the patients
-  // put in the respective year property the amount paid / or billed
+  // put in the respective year's object (line1) property the amount paid and in another object (line2) the amount billed
   if (dashboardOption.type === "facility") {
 
     let thisFacility = {} as facilitiesType;
@@ -82,7 +79,7 @@ const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
   // go through all the patients
   // find the ones with this payer
-  // put in the respective year property the amount paid / or billed
+  // put in the respective year's object (line1) property the amount paid and in another object (line2) the amount billed
   if (dashboardOption.type === "payer") {
     // 
     const allPatients = getAllPatients(myCompany);
@@ -127,9 +124,10 @@ const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
   }
 
+  // for the selected date - upto this year
   // go through all the patients
   // find the ones who paid upto this year
-  // put in the respective year property the amount paid / or billed
+  // put in the respective year's object (line1) property the amount paid and in another object (line2) the amount billed
   if (dashboardOption.type === "year") {
     // 
     const allPatients = getAllPatients(myCompany);
@@ -146,16 +144,17 @@ const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
     // get their total billed and paid
     filteredPatients.forEach((patient)=> {
 
+      // get from the date only the year
       const dateOfService = +patient.DOS.toISOString().slice(0,4)
       let exists = false;
 
-      // find first if this year exists in one of the arrays object
+      // determine first, if this year already exists in one of the arrays object to update and not create an new object
       total_billed.map((row)=> {
         if (+row.xaxis === dateOfService) {
           exists = true;
           row.yaxis = row.yaxis + patient.billed;
         }
-        })
+      })
 
       total_paid.map((row)=> {
         if (+row.xaxis === dateOfService) {
@@ -163,8 +162,8 @@ const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
         }
       })
 
-      if (exists === false) {
       // if this year does not exist, store a new object        
+      if (exists === false) {
       total_billed.push({xaxis:dateOfService, yaxis:patient.billed});
       total_paid.push({xaxis:dateOfService, yaxis:patient.paid});
 
@@ -183,9 +182,6 @@ const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
   }
 
 
-  // console.log(total_billed);
-  // console.log(total_paid);
-
 
 
   return (
@@ -198,10 +194,10 @@ const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
         <div className='w-full h-[80%] flex items-center justify-center my-auto'>
         <LineChartComponent 
-        ChartData1={total_billed} 
-        ChartData2={total_paid}
+        ChartData1={total_billed} // Line 1
+        ChartData2={total_paid}   // Line 2
         Labels={Line1Labels}
-        Colors={[colors.accent1, colors.accent2]}
+        Colors={[colors.accent1, colors.accent2]} // Color for line 1 and color for line 2
         />
 
         </div>

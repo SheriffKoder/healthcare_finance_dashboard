@@ -16,7 +16,7 @@ type PieDataType = {
 const Bar_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
 
-  // number of patients per option,
+  // Number of patients per option
   const Bar2_CharData:PieDataType[] = [];
 
 
@@ -81,6 +81,9 @@ const Bar_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
       facility.services.forEach((service)=> {
 
+          // get from the date only the year
+          // check it with the selections's year
+          // DOS: date of service
           const filtered = service.patients.filter((patient)=> (
             +patient.DOS.toISOString().slice(0,4) === +dashboardOption.key
           ))

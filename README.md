@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+////// Description
+We are a Healthcare company, offering services to patients through our different facilities. Each facility we have offers different services.
 
-First, run the development server:
+This website is a dashboard displaying calculated data (received from an external dataset) through visual elements (Charts).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+There is a filter to change the targeted source of information.
+allowing to choose between different Facilities, Years and patients' payer companies
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+// Visual elements' functionalities
+Bars chart 1 - Top payers by revenue, i.e paid for the selected option
+Bars chart 2 - Number of patients per option
+Gauge 1: get the total number of patients who paid their dues in the selected option
+Gauge 2: get the total amount paid in the selected option
+Line chart: Trends for charges and payments over time
+Pie chart 1: How much each service got paid having the selected option
+Table 1: Calculate and display KPI's for all the facilities in the company object (not dependent on any selected option)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+// Components hierarchy
+Chart/Score containers > Charts, Gauges
+Filter
+TableContainer (table)
+*all the components act separately, requiring the dataset to be imported to function
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+////// Stack
+Vanilla CSS, TailwindCSS, TypeScript, JavaScript
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+//// Files description
+// constants.ts
+includes the main colors used by Tailwind and
+the charts
+labels used by the charts (the hover popup)
+Typescript types for the dataset
+The dataset which is a javaScript object.
 
-## Deploy on Vercel
+// app > page.tsx
+has two features
+1) responsible for the responsive design,
+where it holds spaces that are adjusted with TailwindCSS
+inside these spaces the Chart containers are held
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To see the layout borders, change in styles.css
+the name of the class default_card to default_card2
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2) Listens to the filter component to pass
+the selected information to all the chart/data components
+to fetch data from the dataset accordingly
+using an object containing two properties
+property1: the type of the filter
+property2: the selection
+
+// Tailwind.config.js
+uses the color object imported from constants.ts
+defines the tailwind viewport(s) for responsive design
+
+// Helpers > Helpers.js: 
+javaScript functions could be used in multiple components
+
+// app > globals.css
+handles the main text sizes
+cards and gradient backgrounds
+table alignment, text, background and colors
+
+// app > layout.tsx
+main background
+contains the nav bar and the footer which
+wraps the main element containing all the dashboard

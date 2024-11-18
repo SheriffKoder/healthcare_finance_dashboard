@@ -16,7 +16,7 @@ type PieDataType = {
 
 const Bar_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
-  // top payers by revenue, i.e paid
+  // Top payers by revenue, i.e paid for the selected option
 
   let Bar1_CharData:PieDataType[] = [];
   let allPatients1:PieDataType[] = [];
@@ -25,6 +25,7 @@ const Bar_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
   // we want to get into all of its patients,
   // and collect their name + their revenue
   // an an object line this {xaxis: "Payer1", yaxis: "10"},
+  // sort by highest, and limit to a length number after this if statement
   if (dashboardOption.type === "facility") {
 
     let thisFacility = {} as facilitiesType;
@@ -49,8 +50,7 @@ const Bar_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
   // we will go through all patients,
   // get the patients with this payer,
   // put them in an object
-  // sort, and limit
-
+  // sort by highest, and limit to a length number after this if statement
   if (dashboardOption.type === "payer") {
 
     // 
@@ -75,14 +75,17 @@ const Bar_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
   // we will go through all patients,
   // get the patients who paid in this year
   // put them in an object
-  // sort, and limit
+  // sort by highest, and limit to a length number after this if statement
   if (dashboardOption.type === "year") {
      // 
      const allPatients = getAllPatients(myCompany);
 
      // console.log(allPatients);
  
-     // get all patients who paid this year
+      // get all patients who paid this year
+      // get from the date only the year
+      // check it with the selections's year
+      // DOS: date of service, LOC: name of service
      const filteredPatients = allPatients.filter((patient)=> (
       +patient.DOS.toISOString().slice(0,4) === +dashboardOption.key
      ))
@@ -94,11 +97,9 @@ const Bar_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
   }
 
-  // console.log(allPatients1);
   // once got all patients for the selected category, 
   // sort by their payment higher to lower
   allPatients1 = allPatients1.sort((a, b) => b.yaxis - a.yaxis);
-  // console.log(allPatients1);
 
   // get max 5 patients
   Bar1_CharData = allPatients1.slice(0,5);
@@ -111,10 +112,11 @@ const Bar_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
         <h5 className="text_sub w-full text-start flex gap-1">
           
           <span>Top payers</span>
+          {/* change displayed text according to the selected option type */}
           <span>
-          {dashboardOption.type === "facility" ? "for" : ""}
-          {dashboardOption.type === "payer" ? "from" : ""}
-          {dashboardOption.type === "year" ? "in" : ""}
+            {dashboardOption.type === "facility" ? "for" : ""}
+            {dashboardOption.type === "payer" ? "from" : ""}
+            {dashboardOption.type === "year" ? "in" : ""}
           </span>
           <span>
           {dashboardOption.key}

@@ -15,9 +15,7 @@ const Score_Card = ({dashboardOption}:{dashboardOption:optionType}) => {
   let total_paid = 0;
   let total_OOPM = 0;
 
-  // This component should get back the passed facility,
-  // console.log(dashboardOption.key);
-
+  // get the total paid, billed and achieved OOPM sum for the selected facility
   if (dashboardOption.type === "facility") {
 
     let thisFacility = {} as facilitiesType;
@@ -34,10 +32,10 @@ const Score_Card = ({dashboardOption}:{dashboardOption:optionType}) => {
 
     ////////////////////////////////////////////////////////////
     // For this facility, what is the total billed amount
-    // now i want to get the total billed amount from all
+    // get the total billed amount from all
     // the patients inside all the services
-    // so i've the services now, i want to iterate over the patients
-    // gather the billed amount
+    // as we have the services, now iterate over the patients
+    // to gather the billed amount
 
     thisFacility.services.map((service:servicesType)=> {
       // console.log(service);
@@ -51,6 +49,7 @@ const Score_Card = ({dashboardOption}:{dashboardOption:optionType}) => {
     })
   }
  
+    // get the total paid, billed and achieved OOPM sum for the selected payer
   if (dashboardOption.type === "payer") {
 
     // we want to do the same for the payers
@@ -58,7 +57,7 @@ const Score_Card = ({dashboardOption}:{dashboardOption:optionType}) => {
     // then store in their property their total billed, paid, OOPM
 
     // so you want to go through all the patients in your company
-    // i want to reach the key having patients
+    // and reach the key having patients
 
     const allPatients = getAllPatients(myCompany);
 
@@ -85,6 +84,7 @@ const Score_Card = ({dashboardOption}:{dashboardOption:optionType}) => {
 
   }
 
+    // get the total paid, billed and achieved OOPM sum for the selected year
   if (dashboardOption.type === "year") {
 
     // get all patients
@@ -101,15 +101,10 @@ const Score_Card = ({dashboardOption}:{dashboardOption:optionType}) => {
       total_paid = total_paid + patient.paid;
     })
 
-    // we want all the patients' oopm in this year
+    // we want all the patients' OOPM in this year
     total_OOPM = yearOOPM(myCompany, dashboardOption.key);
 
   }
-
-
-  
-
-
 
 
   return (
@@ -129,7 +124,7 @@ const Score_Card = ({dashboardOption}:{dashboardOption:optionType}) => {
 
       <div className="w-[100%] h-[50%] border pl-[1em] pt-[2em] glass_card glass_card_hover
       rounded-b-[10px]" style={{borderTop: "none"}}>
-        <p className="text_sub">Total Out of pocket maximum (OOPM)</p>
+        <p className="text_sub">Total Out of pocket maximum achieved (OOPM)</p>
         <p className="num_lg">${(total_OOPM).toString().split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
       </div>
 
