@@ -18,7 +18,7 @@
     align-items: center;
     justify-content: center;
 
-    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15); */
 
 }
 
@@ -33,7 +33,7 @@
     align-items: center;
     justify-content: center;
 
-    box-shadow: inset 6px 6px 10px -1px rgba(0, 0, 0, 0.15);
+    /* box-shadow: inset 6px 6px 10px -1px rgba(0, 0, 0, 0.15); */
 
 }
 

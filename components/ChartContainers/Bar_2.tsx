@@ -5,8 +5,7 @@ import {colors} from "@/constants";
 import { Bar2_label } from '@/constants';
 
 import { optionType } from '@/app/page';
-import { facilitiesType, myCompany, patientType, servicesType } from '@/constants';
-import { getAllPatients } from '@/Helpers/functions';
+import { facilitiesType, myCompany, servicesType } from '@/constants';
 
 
 type PieDataType = {
@@ -18,7 +17,7 @@ const Bar_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
 
   // number of patients per option,
-  let Bar2_CharData:PieDataType[] = [];
+  const Bar2_CharData:PieDataType[] = [];
 
 
   // number of patients per facility, i.e 
@@ -36,7 +35,7 @@ const Bar_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
     })
 
     thisFacility.services.map((service:servicesType)=> {
-      let numberOfPatients = service.patients.length;
+      const numberOfPatients = service.patients.length;
         
       Bar2_CharData.push({xaxis:service.LOC, yaxis:numberOfPatients});
         // numberOfPatients.push({xaxis:patient.name, yaxis:patient.paid});
@@ -55,7 +54,7 @@ const Bar_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
         let index = 0;
         facility.services.forEach((service)=> {
 
-            let filtered = service.patients.filter((patient)=> (
+            const filtered = service.patients.filter((patient)=> (
               patient.payer === dashboardOption.key
             ))
             patientCount = patientCount + filtered.length;
@@ -82,7 +81,7 @@ const Bar_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
       facility.services.forEach((service)=> {
 
-          let filtered = service.patients.filter((patient)=> (
+          const filtered = service.patients.filter((patient)=> (
             +patient.DOS.toISOString().slice(0,4) === +dashboardOption.key
           ))
           
@@ -107,16 +106,30 @@ const Bar_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full h-full flex flex-col items-center
+    p-[1rem] rounded-[10px] gap-4">
+       
+       <h5 className="text_sub w-full text-start flex gap-1">
+         
+         <span>Number of patients</span>
+         <span>
+         {dashboardOption.type === "facility" ? "in" : ""}
+         {dashboardOption.type === "payer" ? "from" : ""}
+         {dashboardOption.type === "year" ? "in" : ""}
+         </span>
+         <span>
+         {dashboardOption.key}
+         </span>
+       </h5>
 
-        <div className='w-[70%] h-[70%] flex items-center justify-center'>
-          <BarChartComponent 
-          ChartData={Bar2_CharData} 
-          colors={[colors.accent1]}
-          label={Bar2_label}/>
-        </div>
+       <div className='w-full h-[80%] flex items-center justify-center md2:justify-start'>
+         <BarChartComponent 
+         ChartData={Bar2_CharData} 
+         colors={[colors.accent2]}
+         label={Bar2_label}/>
+       </div>
 
-    </div>
+   </div>
   )
 }
 

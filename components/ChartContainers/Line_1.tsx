@@ -183,15 +183,20 @@ const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
   }
 
 
-  console.log(total_billed);
-  console.log(total_paid);
+  // console.log(total_billed);
+  // console.log(total_paid);
 
 
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full h-full flex flex-col
+    gap-6
+    p-[1em] px-[1.5em] pb-[1.5em] glass_card2 trans_anim
+    rounded-[10px]">
 
-        <div className='w-[70%] h-[70%] flex items-center justify-center'>
+        <h3 className="text_main_lg">Trends for charges and payments</h3>
+
+        <div className='w-full h-[80%] flex items-center justify-center my-auto'>
         <LineChartComponent 
         ChartData1={total_billed} 
         ChartData2={total_paid}

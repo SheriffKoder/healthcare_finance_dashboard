@@ -59,7 +59,7 @@ const Bar_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
     // console.log(allPatients);
 
     // get all patients with this payer
-    let filteredPatients = allPatients.filter((patient)=> (
+    const filteredPatients = allPatients.filter((patient)=> (
       patient.payer === dashboardOption.key
     ))
 
@@ -78,12 +78,12 @@ const Bar_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
   // sort, and limit
   if (dashboardOption.type === "year") {
      // 
-     let allPatients = getAllPatients(myCompany);
+     const allPatients = getAllPatients(myCompany);
 
      // console.log(allPatients);
  
      // get all patients who paid this year
-     let filteredPatients = allPatients.filter((patient)=> (
+     const filteredPatients = allPatients.filter((patient)=> (
       +patient.DOS.toISOString().slice(0,4) === +dashboardOption.key
      ))
  
@@ -105,12 +105,26 @@ const Bar_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full h-full flex flex-col items-center
+     p-[1rem] rounded-[10px] gap-4">
+        
+        <h5 className="text_sub w-full text-start flex gap-1">
+          
+          <span>Top payers</span>
+          <span>
+          {dashboardOption.type === "facility" ? "for" : ""}
+          {dashboardOption.type === "payer" ? "from" : ""}
+          {dashboardOption.type === "year" ? "in" : ""}
+          </span>
+          <span>
+          {dashboardOption.key}
+          </span>
+        </h5>
 
-        <div className='w-[70%] h-[70%] flex items-center justify-center'>
+        <div className='w-full h-[80%] flex items-center justify-center md2:justify-start'>
           <BarChartComponent 
           ChartData={Bar1_CharData} 
-          colors={[colors.accent1]}
+          colors={[colors.accent2]}
           label={Bar1_label}/>
         </div>
 

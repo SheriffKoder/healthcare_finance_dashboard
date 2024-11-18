@@ -125,31 +125,36 @@ const Pie_1= ({dashboardOption}:{dashboardOption:optionType}) => {
 
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full h-full flex flex-col glass_card p-[1rem] rounded-[10px]
+    ">
+            <h4 className="text_main">Payment distribution</h4>
 
-        <div className='w-[70%] h-[70%] flex gap-4 items-center justify-center'>
-          
-        <div className='flex flex-col gap-2'>
+    <div className='flex-1 flex flex-col gap-6 justify-center' >
+
+
+        <div className="w-full flex-1 flex justify-center max-h-[60%]">
+          <PieChartComponent
+            ChartData={Pie1_CharData} 
+            Colors={PieColors}
+          />
+        </div>
+
+
+        <div className='flex flex-row flex-wrap gap-2 text_sub2 items-center justify-center'>
+        {/* <p className='w-full text-center'>Services</p> */}
+
           {Pie1_CharData.map((item, index) => 
             <div key={index} className='flex flex-row gap-1 items-center justify-center'>
               <p>{item.xaxis}</p>
               <span className='h-4 w-4 rounded-full'
               style={{background:PieColors[index]}}></span>
             </div>
+            
           )}
-          Total:{allServicesPay} 
           </div>
-          
-          <PieChartComponent 
-          ChartData={Pie1_CharData} 
-          Colors={PieColors}
-          />
-
-
-          
-        </div>
-
     </div>
+    </div>
+
   )
 }
 

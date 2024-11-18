@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
+
+import Link from "next/link";
 
 
 export const metadata: Metadata = {
@@ -14,10 +15,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-      >
+    <html lang="en" className="main_bg">
+      <body>
+
+        <nav className="w-full h-[4.5rem] flex items-center justify-center glass_card fixed z-[100]"
+        style={{border: "none"}}>
+          <ul className="flex flex-row gap-[1rem] md:gap-[4rem]
+          text-white items-center justify-start md:justify-center text-xs font-thin opacity-50 w-full md:w-auto pl-[1rem]">
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/">Services</Link></li>
+            <li><Link href="/">About</Link></li>
+            <li><Link href="/">Contact</Link></li>
+          </ul>
+          <button className="absolute flex items-center h-full right-[1rem]">
+            <Link href={"/"} className="text-white glass_card_hover_on text-xs rounded-full px-5 py-1 pb-[0.35rem]">contact</Link>
+          </button>
+        </nav>
+
         {children}
+
+        <footer className="w-full min-h-[200px] pt-[2rem] flex items-center justify-center">
+          <ul className="flex flex-row gap-[2rem] md:gap-[4rem]
+          text-white items-center justify-center text-xs font-thin opacity-50">
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/">Services</Link></li>
+            <li><Link href="/">About</Link></li>
+            <li><Link href="/">Contact</Link></li>
+          </ul>
+      </footer>
       </body>
     </html>
   );

@@ -64,7 +64,7 @@ const CircularProgress = ({progress, Colors}:{progress:number, Colors:string[]})
         
                     if (i >= fill) {
                         clearInterval(timerRef.current);
-                        setProg(`${num}%`)  // just a double check as final % number can increase a bit buggy
+                        setProg(`${Math.round(num)}%`)  // just a double check as final % number can increase a bit buggy
                         setBusy(false);
                     } else {
                         setProg(`${Math.floor((number/340*100)-(+prog.split("%")[0])-1)*-1}%`);
@@ -85,7 +85,7 @@ const CircularProgress = ({progress, Colors}:{progress:number, Colors:string[]})
         
                     if (i <= fill) {
                         clearInterval(timerRef.current);
-                        setProg(`${num}%`)
+                        setProg(`${Math.round(num)}%`)
                         setBusy(false);
                     
 
@@ -109,6 +109,7 @@ const CircularProgress = ({progress, Colors}:{progress:number, Colors:string[]})
     }
 
     useEffect(()=> {
+        clearInterval(timerRef.current);
         changeProgress(progress);
     },[progress]);
 

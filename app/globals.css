@@ -15,3 +15,277 @@
 .inline_gap {
     @apply gap-[1.5rem]
 }
+
+
+
+.main_bg_shade {
+
+}
+
+
+/* section header */
+/* card header */
+/* small/table number text */
+
+/* button selected */
+/* button not selected */
+
+/* selected card bg */
+/* transparent card */
+
+
+h1 {
+    background: -webkit-linear-gradient(100deg, rgba(0,0,0,0.01) 0%, rgba(255,255,255,1) 30%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 4px 12px rgba(0,0,0,0.05);
+
+}
+
+h2 {
+    background: -webkit-linear-gradient(100deg, rgba(0,0,0,0.01) 0%, rgba(255,255,255,1) 45%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 4px 12px rgba(0,0,0,0.05);
+
+}
+
+
+/* large number text */
+.num_lg {
+    opacity: 1;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+/* card sub text */
+.text_sub {
+    opacity: 0.6;
+    font-weight: 300;
+    font-size: 1em;
+}
+
+.text_sub2 {
+    opacity: 0.6;
+    font-weight: 300;
+    font-size: 0.75em;
+}
+
+.text_main {
+    opacity: 1;
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.text_main_lg {
+    @apply font-bold text-[1.25rem] md1:text-[1.5em]
+}
+
+/* glass card */
+.glass_card {
+    background: rgba(255, 255, 255, 0.05);
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass_card_hover:hover {
+    background: rgba(42, 189, 142, 0.439);
+    background: linear-gradient(306deg, rgba(56, 255, 192, 0.616) 0%, rgba(36, 160, 121, 0.439) 100%);
+    border: 1px solid rgba(42, 189, 142, 0.439);
+    border-top-color: rgba(17, 73, 55, 0.439);
+    border-left-color: rgba(17, 73, 55, 0.439);
+
+}
+
+.glass_card_hover_on {
+    background: rgba(42, 189, 142, 0.439);
+    background: linear-gradient(306deg, rgba(56, 255, 192, 0.616) 0%, rgba(36, 160, 121, 0.439) 100%);
+    /* border: 1px solid rgba(42, 189, 142, 0.439); */
+    /* border-top-color: rgba(17, 73, 55, 0.439); */
+    /* border-left-color: rgba(17, 73, 55, 0.439); */
+    border: none;
+
+}
+
+.glass_card_hover_on2 {
+    background: rgba(42, 189, 142, 0.439);
+    background: linear-gradient(306deg, rgba(30, 114, 99, 0.7) 0%, rgba(39, 170, 135, 0.7) 100%);
+    /* border: 1px solid rgba(42, 189, 142, 0.439); */
+    /* border-top-color: rgba(17, 73, 55, 0.439); */
+    /* border-left-color: rgba(17, 73, 55, 0.439); */
+    border: none;
+    backdrop-filter: blur(10px);
+
+
+}
+
+
+.glass_card2 {
+    background: rgba(255, 255, 255, 0.01);
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.glass_card2:hover {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+}
+    
+
+
+
+/* https://csshero.org/mesher/ */
+.main_bg {
+    background-color:rgb(3, 15, 14);
+    background-image:
+    radial-gradient(at 17% 58%, hsla(172,13%,14%,0.62) 0px, transparent 50%),
+    radial-gradient(at 36% 46%, hsla(190, 39%, 12%, 0.38) 0px, transparent 50%),
+    radial-gradient(at 63% 11%, hsla(180, 58%, 15%, 0.849) 0px, transparent 50%),
+    radial-gradient(at 4% 13%, hsla(135, 56%, 26%, 0.507) 0px, transparent 50%),
+    radial-gradient(at 10% 2%, hsla(227, 80%, 26%, 0.514) 0px, transparent 50%),
+    radial-gradient(at 52% 54%, hsla(199, 52%, 34%, 0.25) 0px, transparent 50%),
+    radial-gradient(at 8% 14%, hsla(240, 54%, 28%, 0.61) 0px, transparent 50%);
+}
+
+
+.trans_anim {
+    transition: all;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+}
+
+
+
+
+.text_table {
+    @apply text-[2.5vw] md:text-[1em] font-normal
+}
+
+.text_table_sub {
+    @apply text-[3vw] md:text-[1em] font-light opacity-[0.6]
+
+}
+
+
+
+
+/* row height */
+#table_1 td, #table_1 tr, #table_1 {
+    height: 1em;
+    white-space: nowrap;
+    padding: 15px 0;
+
+}
+
+/* all cols same width */
+#table_1 {
+    table-layout: fixed;
+
+}
+
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 16px;
+  }
+
+  tr td {
+    border: 1px solid transparent;
+    transition: all ease 0.3s;
+    /* padding: 5px; */
+  }
+
+  tr td:first-child {
+    border-right: 0px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  tr td:last-child {
+    border-left: 0px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  tr td:not(:first-child, :last-child) {
+    border-left: 0px;
+    border-right: 0px;
+  }
+
+  tr:hover td:first-child {
+    border-color: transparent;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-right: 0px;
+  }
+
+  tr:hover td:first-child {
+   color: #2ABD8E;
+  }
+
+  tr:hover td:last-child {
+    border-color: transparent;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 0px;
+  }
+
+  tr:hover td:not(:first-child, :last-child) {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: transparent;
+    border-left: 0px;
+    border-right: 0px;
+  }
+
+  .highlight {
+    /* width: 30px; */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    margin: 0 auto;
+  }
+
+
+  .highlight_yellow {
+    border: 1px solid rgba(255, 230, 0, 0.15);
+    background-color: rgba(255, 230, 0, 0.1);
+  }
+
+  .highlight_green {
+    border: 1px solid rgba(56, 252, 226, 0.1);
+    background-color: rgba(56, 252, 226, 0.075);
+  }
+
+  .highlight_blue {
+    border: 1px solid rgba(56, 76, 252, 0.2);
+    background-color: rgba(56, 76, 252, 0.15);
+  }
+
+  .highlight_red {
+    border: 1px solid rgba(255, 0, 43, 0.185);
+    background-color: rgba(255, 0, 43, 0.1);
+  }
+
+#table_1_container {
+        /* fallback for old browsers */
+        /* background: #667eea; */
+      
+        /* Chrome 10-25, Safari 5.1-6 */
+        /* background: -webkit-linear-gradient(to top, rgba(102,126,234,0.5), rgba(118,75,162,0.5)); */
+      
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        /* background: linear-gradient(to top, rgba(102,126,234,0.5), rgba(118,75,162,0.5)) */
+
+        background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.2));
+        /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: none;
+
+    }

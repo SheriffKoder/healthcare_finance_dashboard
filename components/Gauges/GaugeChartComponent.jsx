@@ -1,6 +1,5 @@
 "use client"
 
-import { useState, useEffect } from 'react';
 import PathPercentage from "react-svg-path-percentage";
 
 

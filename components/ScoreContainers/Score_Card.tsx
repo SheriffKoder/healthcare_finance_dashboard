@@ -60,12 +60,12 @@ const Score_Card = ({dashboardOption}:{dashboardOption:optionType}) => {
     // so you want to go through all the patients in your company
     // i want to reach the key having patients
 
-    let allPatients = getAllPatients(myCompany);
+    const allPatients = getAllPatients(myCompany);
 
     // console.log(allPatients);
 
     // get all patients with this payer
-    let filteredPatients = allPatients.filter((patient)=> (
+    const filteredPatients = allPatients.filter((patient)=> (
       patient.payer === dashboardOption.key
     ))
     // console.log(filteredPatients);
@@ -88,7 +88,7 @@ const Score_Card = ({dashboardOption}:{dashboardOption:optionType}) => {
   if (dashboardOption.type === "year") {
 
     // get all patients
-    let allPatients = getAllPatients(myCompany);
+    const allPatients = getAllPatients(myCompany);
 
     // find patients who are within this year
     let filteredPatients = allPatients.filter((patient)=> (
@@ -107,9 +107,6 @@ const Score_Card = ({dashboardOption}:{dashboardOption:optionType}) => {
   }
 
 
-
-
-
   
 
 
@@ -118,19 +115,22 @@ const Score_Card = ({dashboardOption}:{dashboardOption:optionType}) => {
   return (
     <>
     
-      <div className="w-[50%] h-[50%] border flex items-center justify-center flex-col gap-2">
-        <p>Total Billed</p>
-        <p>{total_billed.toString().split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+      <div className="w-[50%] h-[50%] border pl-[1em] pt-[2em] glass_card glass_card_hover
+      rounded-tl-[10px]">
+        <p className="text_sub">Total Billed</p>
+        <p className="num_lg">${(total_billed).toString().split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
       </div>          
 
-      <div className="w-[50%] h-[50%] border flex items-center justify-center flex-col gap-2">
-        <p>Total Paid</p>
-        <p>{total_paid.toString().split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+      <div className="w-[50%] h-[50%] border pl-[1em] pt-[2em] glass_card glass_card_hover
+      rounded-tr-[10px]" style={{borderLeft: "none"}}>
+        <p className="text_sub">Total Paid</p>
+        <p className="num_lg">${(total_paid).toString().split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
       </div>          
 
-      <div className="w-[100%] h-[50%] border flex items-center justify-center flex-col gap-2">
-        <p>OOPM</p>
-        <p>{total_OOPM.toString().split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+      <div className="w-[100%] h-[50%] border pl-[1em] pt-[2em] glass_card glass_card_hover
+      rounded-b-[10px]" style={{borderTop: "none"}}>
+        <p className="text_sub">Total Out of pocket maximum (OOPM)</p>
+        <p className="num_lg">${(total_OOPM).toString().split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
       </div>
 
     </>

@@ -24,9 +24,9 @@ ChartJS.register(
 export default function BarChartComponent({ ChartData, colors, label }) {
 
   const options = {
-
     // Remove background grid lines
     scales: {
+      
       x: {
           grid: {
             // offset: true,
@@ -34,6 +34,7 @@ export default function BarChartComponent({ ChartData, colors, label }) {
             // grid: {
               display: false,
             // }
+            
           }
       },
       y: {
@@ -88,13 +89,15 @@ export default function BarChartComponent({ ChartData, colors, label }) {
     labels: ChartData.map((item) => item.xaxis),
     datasets: [
       {
+
         label: ChartData.map((item) => item.yaxis),
         data: ChartData.map((item) => item.yaxis),
         backgroundColor: backgroundColors,
         borderColor: borderColors,
         borderWidth: 1,
         borderRadius: "5",
-        // maxBarThickness: "10",
+        maxBarThickness: "30",
+        
 
       },
     ],

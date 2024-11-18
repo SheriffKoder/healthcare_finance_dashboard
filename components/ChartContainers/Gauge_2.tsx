@@ -104,16 +104,24 @@ const Gauge_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full h-full flex flex-row p-[1em] glass_card
+    rounded-[10px]">
 
-        <div className='w-[70%] h-[70%] flex items-center justify-center flex-col'>
-          <CircularProgress progress={successRate}
-          Colors={[colors.accent1, colors.accent1]}/>
-          <span>total_billed: {total_billed}</span>
-          <span>total_paid: {total_paid}</span>
+        <div className="flex flex-col gap-1 w-[60%]">
+
+          <h4 className="text_main">Payment conversion</h4>
+          <p className="text_sub">Total paid / billed</p>
+          <p className="num_lg">${total_paid} / ${total_billed}</p>
+
         </div>
 
+        <div className='flex items-center justify-center flex-1'>
+          <CircularProgress progress={successRate}
+          Colors={[colors.accent1, colors.accent1]}/>
+        </div>
     </div>
+
+
   )
 }
 

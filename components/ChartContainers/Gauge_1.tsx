@@ -113,14 +113,22 @@ const Gauge_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
 
   return (
-    <div className="w-full h-full flex items-center justify-center flex-col">
+    <div className="w-full h-full flex flex-row p-[1em] glass_card
+    rounded-[10px]">
 
-        <div className='w-[70%] h-[70%] flex items-center justify-center'>
+        <div className="flex flex-col gap-1 w-[60%]">
+
+          <h4 className="text_main">Payment percentage</h4>
+          <p className="text_sub">Total paid patients</p>
+          <p className="num_lg">{successPatients} / {totalNumberOfPatients}</p>
+
+        </div>
+
+        <div className='flex items-center justify-center flex-1'>
           <CircularProgress progress={successRate}
           Colors={[colors.accent1, colors.accent1]}/>
         </div>
-        <span># Patients: {totalNumberOfPatients}</span>
-        <span># success P: {successPatients}</span>
+
 
     </div>
   )

@@ -1,15 +1,28 @@
 
 
 export const colors = {
-    accent1: "#4E78E4",
-    accent2: "#79D8EB",
+    accent1: "#2ABD8E",
+    accent2: "#F4CA55",
     dshbg: "#111217",
     white: "#ffffff",
 
 }
 
 export const PieColors = [
-    "#4E78E4", "#79D8EB", "#171E4E", "#9546EF"
+    "#00796B",  // Deep Teal (rich, dark teal with a slightly greenish hue)
+    "#67a9e5",
+    "#004D40",  // Dark Teal (deep, almost black teal, very grounded)
+    "#25aba4",
+    "#009688",  // Teal (classic vibrant teal, a nice balance of blue and green)
+    "#67a9e5",
+    "#00897B",  // Cool Teal (muted but still vibrant, with a calm greenish-blue feel)
+    "#26A69A",  // Light Teal (softer, pastel teal with a hint of blue)
+    "#004D40",  // Teal Forest (dark, cool teal, earthy with a sophisticated edge)
+    "#80CBC4",  // Soft Aqua Teal (light, refreshing, with a touch of mint)
+    "#00796B",  // Tropical Teal (strong, tropical teal with a lively tone)
+    "#009688",  // Aqua Teal (brighter, vivid teal that's energetic and refreshing)
+    "#2C6B5F"   // Muted Teal (dimmed teal, slightly more subdued for contrast)
+
 ]
 
 

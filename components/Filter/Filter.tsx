@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 
 import { myCompany } from '@/constants';
@@ -97,7 +97,7 @@ dashboardOption: optionType
 
 
 
-
+    const [active, setActive] = useState(false);
 
 
 
@@ -109,14 +109,38 @@ dashboardOption: optionType
 
 
   return (
-    <div className='flex flex-row gap-4 w-full items-center justify-center'>
+    <div className={`flex flex-col gap-4 w-full justify-start
+    p-[1rem] pb-[1.5rem]
+    glass_card_hover_on2
+    rounded-[10px]
+    ${active ? "h-auto" : "h-[3.5rem]"}
+    overflow-hidden
+    relative z-[1]
+    
+    `}>
+
+        <div className="flex flex-row items-center justify-center md:justify-start gap-2 h-[1.5rem]">
+            <p className="font-light ">Displaying information for {dashboardOption.type} {dashboardOption.key}</p>
+
+            <button className="text-white glass_card_hover_on
+            text-xs rounded-full py-1 pb-[0.35rem] w-[75px]"
+            onClick={()=>{setActive((prev)=>!prev)}}>
+                {active ? "close" : "change"}
+            </button>
+        </div>
+
+        <div className='flex flex-row md:flex-col gap-4 justify-center items-start mt-4 font-normal text-sm'>
         {/* Years */}
-        <div className='flex flex-col gap-1 items-center justify-center'>
-            <p className='font-bold'>Years</p>
+        <div className='flex flex-col md:flex-row gap-1 flex-wrap items-center justify-center md:justify-start w-[100px] md:w-auto'>
+            <p className='w-full mb-2 md:mb-0 md:mr-2 md:w-[75px] py-[2px] bg-[#dfdfdf] text-[#000] rounded-[5px] text-center'>
+                Years
+            </p>
             {
                 uniqueDates.map((year)=> (
                     <span key={year}
-                    className={`${dashboardOption.key === year ? "text-accent1" :""}`}
+                    className={`
+                    px-4 py-[4px] bg-[#00000079] w-full md:w-auto rounded-[9px] md:rounded-[99px] text-center
+                    ${dashboardOption.key === year ? "text-accent1" :""}`}
                     onClick={()=>{ChangeOption(year, "year")}}
                     >
                         {year}
@@ -126,12 +150,16 @@ dashboardOption: optionType
         </div>
 
         {/* Payers */}
-        <div className='flex flex-col gap-1 items-center justify-center'>
-            <p className='font-bold'>Payers</p>
+        <div className='flex flex-col md:flex-row gap-1 flex-wrap items-center justify-center md:justify-start w-[100px] md:w-auto'>
+            <p className='w-full mb-2 md:mb-0 md:mr-2 md:w-[75px] py-[2px] bg-[#dfdfdf] text-[#000] rounded-[5px] text-center'>
+                Payers
+            </p>
             {
                 uniquePayers.map((payer)=> (
                     <span key={payer}
-                    className={`${dashboardOption.key === payer ? "text-accent1" :""}`}
+                    className={`
+                    px-4 py-[4px] bg-[#00000079] w-full md:w-auto rounded-[9px] md:rounded-[99px] text-center
+                    ${dashboardOption.key === payer ? "text-accent1" :""}`}
                     onClick={()=>{ChangeOption(payer, "payer")}}
                     >
                         {payer}
@@ -141,18 +169,26 @@ dashboardOption: optionType
         </div>
 
         {/* Facilities */}
-        <div className='flex flex-col gap-1 items-center justify-center'>
-            <p className='font-bold'>Facilities</p>
+        <div className='flex flex-col md:flex-row gap-1 flex-wrap items-center justify-center md:justify-start w-[100px] md:w-auto'>
+            <p className='w-full mb-2 md:mb-0 md:mr-2 md:w-[75px] py-[2px] bg-[#dfdfdf] text-[#000] rounded-[5px] text-center'>
+                Facilities
+            </p>
             {
                 AllFacilities.map((facility)=> (
                     <span key={facility} 
-                    className={`${dashboardOption.key === facility ? "text-accent1" :""}`}
+                    className={`
+                    px-4 py-[4px] bg-[#00000079] w-full md:w-auto rounded-[9px] md:rounded-[99px]  text-center
+                    ${dashboardOption.key === facility ? "text-accent1" :""}`}
                     onClick={()=>{ChangeOption(facility, "facility")}}>
                         {facility}
                     </span>
                 ))
             }
         </div>
+        </div>
+
+
+
 
 
     </div>
