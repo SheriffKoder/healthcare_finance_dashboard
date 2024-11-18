@@ -15,8 +15,7 @@ const CircularProgress = ({progress, Colors}:{progress:number, Colors:string[]})
 
     const [prog, setProg] = useState<string>("100%");
     const [length, setLength] = useState<number>(95);
-    const [busy, setBusy] = useState(false);
-
+    
     // allow to clear the timer interval and set a new one when clicking the buttons, make sure to use window.setInterval
     const timerRef = useRef<number>(0);
 
@@ -32,9 +31,9 @@ const CircularProgress = ({progress, Colors}:{progress:number, Colors:string[]})
         // num/100 >= 0.5 ? factor = 20*(num/100) : 0;
 
         // cut like filled bar for un-complete shape at 100%, with a rotation added in css to shift the start position
-        let factor = (100*num/100);
+        const factor = (100*num/100);
 
-        let fill = (Math.floor(450-(450*(num/100))+factor));
+        const fill = (Math.floor(450-(450*(num/100))+factor));
 
         // let fill = (Math.floor(450-(450*(num/100))+factor))+(282-106); // small svg r
         // console.log(fill);
@@ -42,18 +41,17 @@ const CircularProgress = ({progress, Colors}:{progress:number, Colors:string[]})
         // console.log(+prog.split("%")[0]);
         // console.log(fill);
         // ref.current?.
-        let progressBar = document.getElementById("circularProgress_svg");
+        const progressBar = document.getElementById("circularProgress_svg");
 
         
         if (progressBar) {
 
             let i=length;   //current length
             let number = 0;
-            setBusy(true);
             timerRef.current = window.setInterval(()=> {
 
                 // gradual speed change depending on the current i/progress
-                let speedFactor = (125/i)*(300/i);
+                const speedFactor = (125/i)*(300/i);
 
                 // Backward progress / decrementing
                 if (num < +prog.split("%")[0]) {
@@ -65,7 +63,6 @@ const CircularProgress = ({progress, Colors}:{progress:number, Colors:string[]})
                     if (i >= fill) {
                         clearInterval(timerRef.current);
                         setProg(`${Math.round(num)}%`)  // just a double check as final % number can increase a bit buggy
-                        setBusy(false);
                     } else {
                         setProg(`${Math.floor((number/340*100)-(+prog.split("%")[0])-1)*-1}%`);
                         // prog.style.strokeDashoffset=`${i}`; 
@@ -86,7 +83,6 @@ const CircularProgress = ({progress, Colors}:{progress:number, Colors:string[]})
                     if (i <= fill) {
                         clearInterval(timerRef.current);
                         setProg(`${Math.round(num)}%`)
-                        setBusy(false);
                     
 
                     } else {
@@ -95,17 +91,22 @@ const CircularProgress = ({progress, Colors}:{progress:number, Colors:string[]})
                         if (displayedNumber <= 100) setProg(`${displayedNumber}%`);
                         // prog.style.strokeDashoffset=`${i}`; 
                         //-5 just for alignment
-                        (displayedNumber > 95) ? setLength(i-5) : setLength(i);   
+                        let newLength = i;
+                        if (displayedNumber > 95) newLength = i-5;
+                        setLength(newLength); 
                     }
 
                     if (i < 110) {
                         setProg("100%");
                     }
+
+
                 }
 
             }, 10);
 
         }
+        
     }
 
     useEffect(()=> {

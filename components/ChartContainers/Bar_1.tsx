@@ -54,7 +54,7 @@ const Bar_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
   if (dashboardOption.type === "payer") {
 
     // 
-    let allPatients = getAllPatients(myCompany);
+    const allPatients = getAllPatients(myCompany);
 
     // console.log(allPatients);
 

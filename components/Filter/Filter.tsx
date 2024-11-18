@@ -15,8 +15,8 @@ dashboardOption: optionType
 /////////////////////////////////////////////////////////////
 // output all dates
 
-    let AllPayers: string[] = [];
-    let uniquePayers: string[] = [];
+    const AllPayers: string[] = [];
+    const uniquePayers: string[] = [];
     myCompany.forEach((facility)=> {
         // console.log(facility);
 
@@ -51,8 +51,8 @@ dashboardOption: optionType
     // Get unique dates
 
     // output all dates
-    let AllDates: number[] = [];
-    let uniqueDates: number[] = [];
+    const AllDates: number[] = [];
+    const uniqueDates: number[] = [];
     myCompany.forEach((facility)=> {
         // console.log(facility);
 
@@ -86,7 +86,7 @@ dashboardOption: optionType
     /////////////////////////////////////////////////////////////
     // Get unique facilities
 
-    let AllFacilities: string[] = [];
+    const AllFacilities: string[] = [];
     myCompany.forEach((facility)=> {
         // console.log(facility);
         AllFacilities.push(facility.name);

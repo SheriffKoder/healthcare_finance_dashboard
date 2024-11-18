@@ -1,5 +1,4 @@
 import React from 'react'
-import BarChartComponent from '../Charts/BarChartComponent';
 import {colors} from "@/constants";
 import CircularProgress from '../Gauges/circularProgress/page';
 
@@ -59,12 +58,12 @@ const Gauge_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
   if (dashboardOption.type === "payer") {
 
     // 
-    let allPatients = getAllPatients(myCompany);
+    const allPatients = getAllPatients(myCompany);
 
     // console.log(allPatients);
 
     // get all patients with this payer
-    let filteredPatients = allPatients.filter((patient)=> (
+    const filteredPatients = allPatients.filter((patient)=> (
       patient.payer === dashboardOption.key
     ))
 
@@ -83,10 +82,10 @@ const Gauge_2 = ({dashboardOption}:{dashboardOption:optionType}) => {
 
   if (dashboardOption.type === "year") {
     // get all patients
-    let allPatients = getAllPatients(myCompany);
+    const allPatients = getAllPatients(myCompany);
 
     // find patients who are within this year
-    let filteredPatients = allPatients.filter((patient)=> (
+    const filteredPatients = allPatients.filter((patient)=> (
       +patient.DOS.toISOString().slice(0,4) === +dashboardOption.key
     ))
 

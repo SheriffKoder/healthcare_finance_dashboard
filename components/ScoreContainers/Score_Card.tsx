@@ -91,7 +91,7 @@ const Score_Card = ({dashboardOption}:{dashboardOption:optionType}) => {
     const allPatients = getAllPatients(myCompany);
 
     // find patients who are within this year
-    let filteredPatients = allPatients.filter((patient)=> (
+    const filteredPatients = allPatients.filter((patient)=> (
       +patient.DOS.toISOString().slice(0,4) === +dashboardOption.key
     ))
 

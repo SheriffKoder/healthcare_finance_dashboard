@@ -1,6 +1,6 @@
 
 import {colors} from "@/constants";
-import { Line1_CharData1, Line1_CharData2, Line1Labels } from '@/constants';
+import { Line1Labels } from '@/constants';
 
 
 
@@ -23,8 +23,8 @@ const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
   // billed over time 
   // paid over time
 
-  let total_billed:PieDataType2[] = [];
-  let total_paid:PieDataType2[] = [];
+  const total_billed:PieDataType2[] = [];
+  const total_paid:PieDataType2[] = [];
 
   // for the selected facility
   // for the selected date ? ok upto this year
@@ -48,7 +48,7 @@ const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
     thisFacility.services.map((service:servicesType)=> {
       service.patients.map((patient:patientType)=> {
 
-        let dateOfService = +patient.DOS.toISOString().slice(0,4)
+        const dateOfService = +patient.DOS.toISOString().slice(0,4)
         let exists = false;
 
         // find first if this year exists in one of the arrays object
@@ -85,19 +85,19 @@ const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
   // put in the respective year property the amount paid / or billed
   if (dashboardOption.type === "payer") {
     // 
-    let allPatients = getAllPatients(myCompany);
+    const allPatients = getAllPatients(myCompany);
 
     // console.log(allPatients);
 
     // get all patients with this payer
-    let filteredPatients = allPatients.filter((patient)=> (
+    const filteredPatients = allPatients.filter((patient)=> (
       patient.payer === dashboardOption.key
     ))
 
     // get their total billed and paid
     filteredPatients.forEach((patient)=> {
 
-      let dateOfService = +patient.DOS.toISOString().slice(0,4)
+      const dateOfService = +patient.DOS.toISOString().slice(0,4)
       let exists = false;
 
       // find first if this year exists in one of the arrays object
@@ -132,12 +132,12 @@ const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
   // put in the respective year property the amount paid / or billed
   if (dashboardOption.type === "year") {
     // 
-    let allPatients = getAllPatients(myCompany);
+    const allPatients = getAllPatients(myCompany);
 
     // console.log(allPatients);
 
     // get all patients with payments before this year
-    let filteredPatients = allPatients.filter((patient)=> (
+    const filteredPatients = allPatients.filter((patient)=> (
       +patient.DOS.toISOString().slice(0,4) <= +dashboardOption.key
     ))
 
@@ -146,7 +146,7 @@ const Line_1 = ({dashboardOption}:{dashboardOption:optionType}) => {
     // get their total billed and paid
     filteredPatients.forEach((patient)=> {
 
-      let dateOfService = +patient.DOS.toISOString().slice(0,4)
+      const dateOfService = +patient.DOS.toISOString().slice(0,4)
       let exists = false;
 
       // find first if this year exists in one of the arrays object

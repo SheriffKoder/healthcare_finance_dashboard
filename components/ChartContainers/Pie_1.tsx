@@ -6,7 +6,6 @@ import PieChartComponent from '../Charts/PieChartComponent';
 
 import { optionType } from '@/app/page';
 import { facilitiesType, myCompany, patientType, servicesType } from '@/constants';
-import { getAllPatients } from '@/Helpers/functions';
 
 
 type pieCharDataType = {
@@ -17,7 +16,7 @@ type pieCharDataType = {
 const Pie_1= ({dashboardOption}:{dashboardOption:optionType}) => {
 
 // How much each service got paid
-  let Pie1_CharData:pieCharDataType[] = []
+  const Pie1_CharData:pieCharDataType[] = []
   let allServicesPay = 0;
 
   // go through each service in this facility,
@@ -62,7 +61,7 @@ const Pie_1= ({dashboardOption}:{dashboardOption:optionType}) => {
     myCompany.forEach((facility)=> {
 
       // once done with a service, store its paid with its name in an object
-      facility.services.map((service:servicesType, index:number)=> {
+      facility.services.map((service:servicesType)=> {
       // console.log(service.LOC);
 
         let serviceTotalPaid = 0;
@@ -93,7 +92,7 @@ const Pie_1= ({dashboardOption}:{dashboardOption:optionType}) => {
     myCompany.forEach((facility)=> {
 
     // once done with a service, store its paid with its name in an object
-    facility.services.map((service:servicesType, index:number)=> {
+    facility.services.map((service:servicesType)=> {
       // console.log(service.LOC);
 
       let serviceTotalPaid = 0;
